@@ -1,14 +1,14 @@
 {
-  "_comment": "Codex host fragment. Merge this UserPromptSubmit entry into ~/.codex/hooks.json and copy reminder.py to ~/.codex/hooks/attribution_reminder.py (or point the command at this repo). The skill (plugins/attribution/skills/attribution/SKILL.md) is the same across hosts.",
+  "_comment": "Codex host adapter fragment. Merge this UserPromptSubmit entry into ~/.codex/hooks.json and copy reminder.py to ~/.codex/hooks/reply_trace.py (or point the command at this repo). The skill (plugins/reply-trace/skills/reply-trace/SKILL.md) is the same across agent hosts.",
   "hooks": {
     "UserPromptSubmit": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$HOME/.codex/hooks/attribution_reminder.py\"",
+            "command": "python3 \"$HOME/.codex/hooks/reply_trace.py\"",
             "timeout": 5,
-            "statusMessage": "attribution reminder"
+            "statusMessage": "reply trace"
           }
         ]
       }

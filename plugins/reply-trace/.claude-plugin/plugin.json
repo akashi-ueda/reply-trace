@@ -1,0 +1,20 @@
+{
+  "name": "reply-trace",
+  "version": "0.1.0",
+  "description": "End each reply with a one-line disclosure of the plugins, skills, MCP tools, subagents, and hooks the agent used this turn. Omits empty categories; omits the line entirely when nothing was used.",
+  "author": {
+    "name": "akashi-ueda"
+  },
+  "homepage": "https://github.com/akashi-ueda/reply-trace",
+  "repository": "https://github.com/akashi-ueda/reply-trace",
+  "license": "MIT",
+  "keywords": [
+    "attribution",
+    "disclosure",
+    "transparency",
+    "skills",
+    "mcp",
+    "hooks"
+  ],
+  "skills": "./skills/"
+}

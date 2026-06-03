@@ -1,0 +1,23 @@
+{
+  "name": "personal",
+  "plugins": [
+    {
+      "name": "reply-trace",
+      "source": {
+        "source": "local",
+        "path": "./.codex/plugins/reply-trace"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "interface": {
+        "displayName": "Reply Trace"
+      },
+      "category": "Productivity",
+      "description": "End replies with a one-line disclosure of used plugins, skills, MCP tools, subagents, and hooks.",
+      "version": "0.1.0",
+      "license": "MIT"
+    }
+  ]
+}
