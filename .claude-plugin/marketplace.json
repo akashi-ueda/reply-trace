@@ -1,0 +1,24 @@
+{
+  "name": "agent-attribution",
+  "owner": {
+    "name": "akashi-ueda",
+    "url": "https://github.com/akashi-ueda"
+  },
+  "metadata": {
+    "description": "Disclose the skills, MCP tools, and hooks an agent auto-used, as one footer line at the end of each reply.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "attribution",
+      "source": "./plugins/attribution",
+      "description": "End replies with a one-line disclosure of auto-used skills / MCP tools / hooks. Skill defines the format; a UserPromptSubmit hook reinforces it every turn.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "category": "productivity",
+      "author": {
+        "name": "akashi-ueda"
+      }
+    }
+  ]
+}
