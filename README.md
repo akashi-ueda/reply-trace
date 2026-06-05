@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Plugin](https://img.shields.io/badge/plugin-Claude%20Code%20%2B%20Codex-blue)](#install)
 [![Agent agnostic](https://img.shields.io/badge/design-agent--agnostic-purple)](#agent-agnostic-core)
-[![Locales](https://img.shields.io/badge/locales-en%20%7C%20ko%20%7C%20ja-orange)](#locales)
+[![Locales](https://img.shields.io/badge/locales-en%20%7C%20ko%20%7C%20ja-orange)](#language)
 
 Languages: **English** · [한국어](docs/README.ko.md) · [日本語](docs/README.ja.md)
 
@@ -103,30 +103,13 @@ All options use environment variables.
 
 Legacy `AGENT_ATTRIBUTION_*` variables are still accepted as fallbacks.
 
-## Locales
+## Language
 
-By default (`REPLY_TRACE_LOCALE=auto`, the default), the footer language follows
-the language of the reply — a Korean reply gets a Korean footer, a Japanese reply
-a Japanese one, no configuration needed. Set an explicit locale to pin the footer
-to one language with canonical category words.
-
-### English (`auto` reply in English, or `REPLY_TRACE_LOCALE=en`)
-
-```text
-Auto-used — plugins: Browser; skills: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; subagents: reviewer (checks diff); hooks: pre_tool_use (checks command policy)
-```
-
-### Korean (`auto` reply in Korean, or `REPLY_TRACE_LOCALE=ko`)
-
-```text
-사용한 자동 트리거 — 플러그인: Browser; 스킬: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; 서브에이전트: reviewer (diff 검토); 훅: pre_tool_use (명령 정책 확인)
-```
-
-### Japanese (`auto` reply in Japanese, or `REPLY_TRACE_LOCALE=ja`)
-
-```text
-使用した自動トリガー — プラグイン: Browser; スキル: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; サブエージェント: reviewer (diff確認); フック: pre_tool_use (コマンドポリシー確認)
-```
+By default (`REPLY_TRACE_LOCALE=auto`) the footer language follows the reply — a
+Korean reply gets a Korean footer, a Japanese reply a Japanese one, with no
+configuration. Set an explicit `REPLY_TRACE_LOCALE` to pin one language with
+canonical category words. Localized footer examples live in the
+[Korean](docs/README.ko.md) and [Japanese](docs/README.ja.md) docs.
 
 ## Agent-Agnostic Core
 
