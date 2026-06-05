@@ -13,7 +13,7 @@ personal plugin package plus a `UserPromptSubmit` hook adapter.
    mkdir -p ~/.codex/plugins
    rm -rf ~/.codex/plugins/reply-trace
    mkdir -p ~/.codex/plugins/reply-trace
-   cp -R plugins/reply-trace/.codex-plugin ~/.codex/plugins/reply-trace/
+   cp -R hosts/codex/.codex-plugin ~/.codex/plugins/reply-trace/
    cp -R plugins/reply-trace/skills ~/.codex/plugins/reply-trace/
    ```
 
@@ -83,7 +83,7 @@ adapter로 사용합니다.
 mkdir -p ~/.codex/plugins ~/.agents/plugins ~/.codex/hooks
 rm -rf ~/.codex/plugins/reply-trace
 mkdir -p ~/.codex/plugins/reply-trace
-cp -R plugins/reply-trace/.codex-plugin ~/.codex/plugins/reply-trace/
+cp -R hosts/codex/.codex-plugin ~/.codex/plugins/reply-trace/
 cp -R plugins/reply-trace/skills ~/.codex/plugins/reply-trace/
 test -f ~/.agents/plugins/marketplace.json || \
   cp hosts/codex/personal-marketplace.example.json ~/.agents/plugins/marketplace.json
@@ -107,7 +107,7 @@ Codex では `reply-trace` を personal plugin package と
 mkdir -p ~/.codex/plugins ~/.agents/plugins ~/.codex/hooks
 rm -rf ~/.codex/plugins/reply-trace
 mkdir -p ~/.codex/plugins/reply-trace
-cp -R plugins/reply-trace/.codex-plugin ~/.codex/plugins/reply-trace/
+cp -R hosts/codex/.codex-plugin ~/.codex/plugins/reply-trace/
 cp -R plugins/reply-trace/skills ~/.codex/plugins/reply-trace/
 test -f ~/.agents/plugins/marketplace.json || \
   cp hosts/codex/personal-marketplace.example.json ~/.agents/plugins/marketplace.json
