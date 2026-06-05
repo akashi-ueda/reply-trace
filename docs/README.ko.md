@@ -82,14 +82,19 @@ Codex plugin package에는 복사하지 않습니다. Codex는 대신
 | 변수 | 기본값 | 효과 |
 |------|--------|------|
 | `REPLY_TRACE_LABEL` | locale 기본값 | footer 라벨 교체. |
-| `REPLY_TRACE_LOCALE` | `en` | category 이름 선택. 내장: `en`, `ko`, `ja`. |
+| `REPLY_TRACE_LOCALE` | `auto` | `auto`는 footer를 응답 언어에 맞춤; `en`/`ko`/`ja`/기타 설정 시 그 언어로 고정. |
 | `REPLY_TRACE_DISABLE` | unset | `1`, `true`, `on`, `yes` 설정 시 footer 억제. |
 
 레거시 `AGENT_ATTRIBUTION_*` 변수도 fallback으로 허용됩니다.
 
 ## Locale
 
+기본값(`REPLY_TRACE_LOCALE=auto`)에서는 footer 언어가 응답 언어를 따라갑니다 —
+한국어로 답하면 한국어 footer, 일본어로 답하면 일본어 footer, 설정 불필요.
+한 언어로 고정하고 canonical category 단어를 쓰려면 명시적 locale을 설정합니다.
+
 ```bash
+# 한국어로 고정 (auto면 응답이 한국어일 때 자동)
 export REPLY_TRACE_LOCALE=ko
 ```
 

@@ -11,7 +11,11 @@ Output goes to stdout, which the host adds to the prompt context.
 Config (all optional, read from the environment):
   REPLY_TRACE_DISABLE  set to 1/true/on/yes -> emit nothing
   REPLY_TRACE_LABEL    custom footer label (overrides locale default)
-  REPLY_TRACE_LOCALE   en (default) | ko | ja | <other>
+  REPLY_TRACE_LOCALE   auto (default) | en | ko | ja | <other>
+
+When REPLY_TRACE_LOCALE is unset or "auto", the footer language is not pinned:
+the reminder tells the agent to write the footer in the same language as its
+reply. Set an explicit locale to force canonical category words instead.
 
 Legacy AGENT_ATTRIBUTION_* names are still accepted as fallbacks.
 """
@@ -43,11 +47,24 @@ def main() -> int:
     if truthy(env("REPLY_TRACE_DISABLE", "AGENT_ATTRIBUTION_DISABLE")):
         return 0
 
-    locale = env("REPLY_TRACE_LOCALE", "AGENT_ATTRIBUTION_LOCALE").strip() or "en"
-    label_default, c_plugins, c_skills, c_mcp, c_subagents, c_hooks = LOCALES.get(locale, LOCALES["en"])
+    locale = env("REPLY_TRACE_LOCALE", "AGENT_ATTRIBUTION_LOCALE").strip().lower() or "auto"
+    auto = locale == "auto"
+
+    # Auto mode renders an English structural template but lets the agent pick
+    # the footer language. An explicit locale pins canonical category words.
+    preset = LOCALES["en"] if auto else LOCALES.get(locale, LOCALES["en"])
+    label_default, c_plugins, c_skills, c_mcp, c_subagents, c_hooks = preset
     label = env("REPLY_TRACE_LABEL", "AGENT_ATTRIBUTION_LABEL").strip() or label_default
 
-    lang_note = "" if locale == "en" else f" Write category names and hook roles in locale '{locale}'."
+    if auto:
+        lang_note = (
+            " Write the footer (label and category names) in the same language as your"
+            " reply; keep this structure and the category order."
+        )
+    elif locale == "en":
+        lang_note = ""
+    else:
+        lang_note = f" Write category names and hook roles in locale '{locale}'."
 
     msg = (
         "[reply-trace] If this turn you invoked any plugin/skill, called any MCP tool, "

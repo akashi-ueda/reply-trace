@@ -98,34 +98,31 @@ All options use environment variables.
 | Variable | Default | Effect |
 |----------|---------|--------|
 | `REPLY_TRACE_LABEL` | locale default | Replaces the footer label. |
-| `REPLY_TRACE_LOCALE` | `en` | Selects category names. Built in: `en`, `ko`, `ja`. |
+| `REPLY_TRACE_LOCALE` | `auto` | `auto` matches the footer to your reply's language; set `en`/`ko`/`ja`/other to pin one. |
 | `REPLY_TRACE_DISABLE` | unset | Set `1`, `true`, `on`, or `yes` to suppress the footer. |
 
 Legacy `AGENT_ATTRIBUTION_*` variables are still accepted as fallbacks.
 
 ## Locales
 
-### English
+By default (`REPLY_TRACE_LOCALE=auto`, the default), the footer language follows
+the language of the reply — a Korean reply gets a Korean footer, a Japanese reply
+a Japanese one, no configuration needed. Set an explicit locale to pin the footer
+to one language with canonical category words.
+
+### English (`auto` reply in English, or `REPLY_TRACE_LOCALE=en`)
 
 ```text
 Auto-used — plugins: Browser; skills: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; subagents: reviewer (checks diff); hooks: pre_tool_use (checks command policy)
 ```
 
-### Korean
-
-```bash
-export REPLY_TRACE_LOCALE=ko
-```
+### Korean (`auto` reply in Korean, or `REPLY_TRACE_LOCALE=ko`)
 
 ```text
 사용한 자동 트리거 — 플러그인: Browser; 스킬: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; 서브에이전트: reviewer (diff 검토); 훅: pre_tool_use (명령 정책 확인)
 ```
 
-### Japanese
-
-```bash
-export REPLY_TRACE_LOCALE=ja
-```
+### Japanese (`auto` reply in Japanese, or `REPLY_TRACE_LOCALE=ja`)
 
 ```text
 使用した自動トリガー — プラグイン: Browser; スキル: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; サブエージェント: reviewer (diff確認); フック: pre_tool_use (コマンドポリシー確認)
