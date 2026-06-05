@@ -8,6 +8,8 @@
 [![Agent agnostic](https://img.shields.io/badge/design-agent--agnostic-purple)](#agent-agnostic-core)
 [![Locales](https://img.shields.io/badge/locales-en%20%7C%20ko%20%7C%20ja-orange)](#locales)
 
+Languages: **English** · [한국어](docs/README.ko.md) · [日本語](docs/README.ja.md)
+
 `reply-trace` adds a final one-line transparency footer when an agent
 uses automation behind the scenes:
 
@@ -62,7 +64,7 @@ Short version:
 mkdir -p ~/.codex/plugins ~/.agents/plugins ~/.codex/hooks
 rm -rf ~/.codex/plugins/reply-trace
 mkdir -p ~/.codex/plugins/reply-trace
-cp -R plugins/reply-trace/.codex-plugin ~/.codex/plugins/reply-trace/
+cp -R hosts/codex/.codex-plugin ~/.codex/plugins/reply-trace/
 cp -R plugins/reply-trace/skills ~/.codex/plugins/reply-trace/
 test -f ~/.agents/plugins/marketplace.json || \
   cp hosts/codex/personal-marketplace.example.json ~/.agents/plugins/marketplace.json
@@ -157,15 +159,18 @@ Porting to another agent host:
 
 ```text
 .claude-plugin/marketplace.json
+docs/
+  README.ko.md
+  README.ja.md
 hosts/
   codex/
+    .codex-plugin/plugin.json
     README.md
     hooks.fragment.json
     personal-marketplace.example.json
 plugins/
   reply-trace/
     .claude-plugin/plugin.json
-    .codex-plugin/plugin.json
     hooks/
       hooks.json
       reminder.py
@@ -179,104 +184,7 @@ LICENSE
 
 MIT — see [LICENSE](LICENSE).
 
-## 한국어
+## Other Languages
 
-`reply-trace`는 에이전트가 플러그인, 스킬, MCP 도구, 서브에이전트,
-훅을 사용했을 때 응답 마지막에 한 줄 disclosure를 추가합니다.
-
-```text
-사용한 자동 트리거 — 플러그인: Browser; 스킬: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; 서브에이전트: reviewer (diff 검토); 훅: pre_tool_use (명령 정책 확인)
-```
-
-- 아무것도 사용하지 않으면 줄을 출력하지 않습니다.
-- 빈 category는 생략합니다.
-- Claude Code 플러그인으로 바로 설치할 수 있고, Codex는 `hosts/codex/`
-  adapter와 personal plugin package를 사용합니다.
-- 다른 AI 에이전트도 durable instruction + prompt-time reminder 방식으로
-  붙일 수 있습니다.
-
-### 설치
-
-Claude Code:
-
-```bash
-claude plugin marketplace add akashi-ueda/reply-trace
-claude plugin install reply-trace@reply-trace
-```
-
-Codex:
-
-```bash
-mkdir -p ~/.codex/plugins ~/.agents/plugins ~/.codex/hooks
-rm -rf ~/.codex/plugins/reply-trace
-mkdir -p ~/.codex/plugins/reply-trace
-cp -R plugins/reply-trace/.codex-plugin ~/.codex/plugins/reply-trace/
-cp -R plugins/reply-trace/skills ~/.codex/plugins/reply-trace/
-test -f ~/.agents/plugins/marketplace.json || \
-  cp hosts/codex/personal-marketplace.example.json ~/.agents/plugins/marketplace.json
-cp plugins/reply-trace/hooks/reminder.py ~/.codex/hooks/reply_trace.py
-```
-
-기존 `~/.agents/plugins/marketplace.json`이 있으면 example 파일 전체를 덮지
-말고 `reply-trace` entry만 병합합니다. 그 다음
-`hosts/codex/hooks.fragment.json`의 `UserPromptSubmit` 항목을
-`~/.codex/hooks.json`에 병합하고, Codex를 재시작한 뒤 personal marketplace에서
-`reply-trace`를 설치합니다.
-
-`plugins/reply-trace/hooks/hooks.json`은 Claude Code 전용 hook adapter이므로
-Codex plugin package에는 복사하지 않습니다.
-
-주의: 이 프로젝트는 자동 감사 로그가 아닙니다. 에이전트가 로드된 지침과
-prompt-time reminder를 따르도록 돕는 transparency convention입니다.
-
-## 日本語
-
-`reply-trace` は、エージェントがプラグイン、スキル、MCP ツール、
-サブエージェント、フックを使ったときに、返信の最後へ 1 行の disclosure を
-追加します。
-
-```text
-使用した自動トリガー — プラグイン: Browser; スキル: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; サブエージェント: reviewer (diff確認); フック: pre_tool_use (コマンドポリシー確認)
-```
-
-- 何も使っていない場合は出力しません。
-- 空の category は省略します。
-- Claude Code plugin として使えます。Codex は `hosts/codex/` adapter を
-  使い、personal plugin package としても配布できます。
-- 他の AI エージェントにも durable instruction + prompt-time reminder で
-  移植できます。
-
-### インストール
-
-Claude Code:
-
-```bash
-claude plugin marketplace add akashi-ueda/reply-trace
-claude plugin install reply-trace@reply-trace
-```
-
-Codex:
-
-```bash
-mkdir -p ~/.codex/plugins ~/.agents/plugins ~/.codex/hooks
-rm -rf ~/.codex/plugins/reply-trace
-mkdir -p ~/.codex/plugins/reply-trace
-cp -R plugins/reply-trace/.codex-plugin ~/.codex/plugins/reply-trace/
-cp -R plugins/reply-trace/skills ~/.codex/plugins/reply-trace/
-test -f ~/.agents/plugins/marketplace.json || \
-  cp hosts/codex/personal-marketplace.example.json ~/.agents/plugins/marketplace.json
-cp plugins/reply-trace/hooks/reminder.py ~/.codex/hooks/reply_trace.py
-```
-
-既存の `~/.agents/plugins/marketplace.json` がある場合は example 全体で
-上書きせず、`reply-trace` entry だけをマージします。その後、
-`hosts/codex/hooks.fragment.json` の `UserPromptSubmit` 設定を
-`~/.codex/hooks.json` にマージし、Codex を再起動して personal marketplace
-から `reply-trace` をインストールします。
-
-`plugins/reply-trace/hooks/hooks.json` は Claude Code 専用 hook adapter なので、
-Codex plugin package にはコピーしません。
-
-注意: これは改ざん不能な監査ログではありません。エージェントが読み込んだ
-指示と prompt-time reminder に従って disclosure を書くための transparency
-convention です。
+- [한국어 (Korean)](docs/README.ko.md)
+- [日本語 (Japanese)](docs/README.ja.md)
