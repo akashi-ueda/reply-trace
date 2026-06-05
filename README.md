@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Plugin](https://img.shields.io/badge/plugin-Claude%20Code%20%2B%20Codex-blue)](#install)
 [![Agent agnostic](https://img.shields.io/badge/design-agent--agnostic-purple)](#agent-agnostic-core)
-[![Locales](https://img.shields.io/badge/locales-en%20%7C%20ko%20%7C%20ja-orange)](#language)
+[![Language](https://img.shields.io/badge/language-en%20%7C%20ko%20%7C%20ja-orange)](#language)
 
 Languages: **English** · [한국어](docs/README.ko.md) · [日本語](docs/README.ja.md)
 
