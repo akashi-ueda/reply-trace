@@ -4,7 +4,7 @@
 > subagents, and hooks used for each reply.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Plugin](https://img.shields.io/badge/plugin-Claude%20Code%20%2B%20Codex-blue)](#install)
+[![Hosts](https://img.shields.io/badge/hosts-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor%20%C2%B7%20Antigravity-blue)](#install)
 [![Agent agnostic](https://img.shields.io/badge/design-agent--agnostic-purple)](#agent-agnostic-core)
 [![Language](https://img.shields.io/badge/language-en%20%7C%20ko%20%7C%20ja-orange)](#language)
 
@@ -32,8 +32,8 @@ reply.
 | Feature | What it does |
 |---------|--------------|
 | One-line footer | Adds a compact attribution line only when needed. |
-| Agent-agnostic core | Same rule works across Claude Code, Codex, and other agent hosts. |
-| One package, both hosts | A single plugin folder installs on Claude Code and Codex via the same two commands. |
+| Agent-agnostic core | Same rule works across Claude Code, Codex, Cursor, Antigravity, and other hosts. |
+| Plugin or rule | Plugin package on Claude Code / Codex; always-on rule on Cursor / Antigravity. |
 | Locale support | English default, with Korean and Japanese footer labels/categories. |
 | No dependencies | Hook is a small Python script using only the standard library. |
 
@@ -66,6 +66,36 @@ and auto-discovers the bundled `hooks/hooks.json`. The hook command uses
 `${CLAUDE_PLUGIN_ROOT}`, which Codex sets for plugin-hook compatibility — so no
 manual hook wiring is needed. For local development install, see
 [hosts/codex/README.md](hosts/codex/README.md).
+
+### Cursor
+
+Cursor has no plugin package, but its **Rules** are always-on instructions
+re-sent every turn — equivalent to the plugin's durable-instruction half. Ship
+`reply-trace` as an always-apply rule:
+
+```bash
+mkdir -p .cursor/rules
+cp hosts/cursor/rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
+```
+
+The rule sets `alwaysApply: true`, so Cursor includes it in every turn with no
+further setup. Cursor's per-turn `beforeSubmitPrompt` hook can't inject context,
+so the always-on rule (not a hook) carries the reminder here. Details and a
+global/user-rule option: [hosts/cursor/README.md](hosts/cursor/README.md).
+
+### Google Antigravity
+
+Antigravity also uses always-on **Rules** and has no prompt-time hook, so the
+rule is the whole adapter:
+
+```bash
+mkdir -p .agents/rules
+cp hosts/antigravity/rules/reply-trace.md .agents/rules/reply-trace.md
+```
+
+Then open **Customizations → Rules** and set the `reply-trace` rule to **Always
+On**. For a global rule, append it to `~/.gemini/GEMINI.md`. Details:
+[hosts/antigravity/README.md](hosts/antigravity/README.md).
 
 ## Configuration
 
@@ -104,12 +134,17 @@ the host agent following the loaded instruction and prompt-time reminder.
 
 Porting to another agent host:
 
-1. Load `SKILL.md` through that host's durable instruction, skill, or extension
-   mechanism.
-2. Run `reminder.py`, or equivalent middleware, before each user prompt.
+1. Load `SKILL.md` (or an equivalent rule) through that host's durable
+   instruction, skill, rule, or extension mechanism.
+2. If the host supports prompt-time hooks, run `reminder.py` or equivalent
+   middleware before each user prompt. If it doesn't (e.g. Cursor, Antigravity),
+   an always-on rule already re-applies every turn, so the rule alone suffices.
 3. Map host concepts into these categories:
    `plugins`, `skills`, `MCP`, `subagents`, `hooks`.
 4. Keep the final disclosure as one line at the end of the reply.
+
+Bundled host adapters: Claude Code & Codex (plugin package), Cursor & Antigravity
+(always-on rule under [`hosts/`](hosts/)).
 
 ## Repository Layout
 
@@ -121,6 +156,14 @@ docs/
 hosts/
   codex/
     README.md
+  cursor/
+    README.md
+    rules/
+      reply-trace.mdc
+  antigravity/
+    README.md
+    rules/
+      reply-trace.md
 plugins/
   reply-trace/
     .claude-plugin/plugin.json
