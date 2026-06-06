@@ -70,7 +70,7 @@ duradera del plugin. Instala como regla always-apply:
 
 ```bash
 mkdir -p .cursor/rules
-cp hosts/cursor/rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
+cp rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
 ```
 
 La regla usa `alwaysApply: true`, así que Cursor la incluye cada turno. El hook

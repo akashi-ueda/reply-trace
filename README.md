@@ -17,8 +17,12 @@ scenes, disclosed in a single line at the end of every answer.
 
 [한국어](docs/README.ko.md) · [日本語](docs/README.ja.md) · [Español](docs/README.es.md) · [中文](docs/README.zh.md)
 
-<!-- DEMO GIF: record a ~5s clip of an agent reply gaining the footer, save to docs/assets/demo.gif, then this renders it. See docs/assets/README.md. -->
-<img src="docs/assets/demo.gif" alt="reply-trace footer appended to an agent reply" width="720">
+<!--
+  DEMO GIF placeholder. Record a ~5s clip of an agent reply gaining the footer,
+  save it to docs/assets/demo.gif (see docs/assets/README.md), then uncomment the
+  <img> below. Kept commented so the hero never shows a broken image.
+  <img src="docs/assets/demo.gif" alt="reply-trace footer appended to an agent reply" width="720">
+-->
 
 </div>
 
@@ -98,7 +102,7 @@ re-sent every turn — equivalent to the plugin's durable-instruction half. Ship
 
 ```bash
 mkdir -p .cursor/rules
-cp hosts/cursor/rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
+cp rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
 ```
 
 The rule sets `alwaysApply: true`, so Cursor includes it in every turn with no
@@ -165,27 +169,29 @@ Porting to another agent host:
    `plugins`, `skills`, `MCP`, `subagents`, `hooks`.
 4. Keep the final disclosure as one line at the end of the reply.
 
-Bundled host adapters: Claude Code & Codex (plugin package), Cursor & Antigravity
-(always-on rule under [`hosts/`](hosts/)).
+Bundled host adapters: Claude Code & Codex (plugin package under
+[`plugins/`](plugins/)), Cursor ([`rules/reply-trace.mdc`](rules/reply-trace.mdc)),
+and Antigravity ([`hosts/antigravity/`](hosts/antigravity/)).
 
 ## Repository Layout
 
 ```text
 .claude-plugin/marketplace.json
+_config.yml                      # GitHub Pages: renders README as the site
+rules/
+  reply-trace.mdc                # Cursor rule (root = cursor.directory auto-detect)
 docs/
   README.ko.md
   README.ja.md
+  README.es.md
+  README.zh.md
+  assets/                        # demo.gif + recording notes
 hosts/
-  codex/
-    README.md
-  cursor/
-    README.md
-    rules/
-      reply-trace.mdc
+  codex/README.md
+  cursor/README.md
   antigravity/
     README.md
-    rules/
-      reply-trace.md
+    rules/reply-trace.md
 plugins/
   reply-trace/
     .claude-plugin/plugin.json

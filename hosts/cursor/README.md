@@ -3,7 +3,9 @@
 Cursor has no Claude/Codex-style plugin package, but it has **Rules** —
 always-on instructions re-sent with every request. `reply-trace` ships as an
 always-apply rule, which is equivalent to the durable-instruction half of the
-plugin on other hosts.
+plugin on other hosts. The rule lives at the repo root
+([`rules/reply-trace.mdc`](../../rules/reply-trace.mdc)) so cursor.directory
+auto-detects it on submission.
 
 ## Install (project rule)
 
@@ -11,7 +13,7 @@ Copy the rule into your project's `.cursor/rules/` folder and commit it:
 
 ```bash
 mkdir -p .cursor/rules
-cp hosts/cursor/rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
+cp rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
 ```
 
 The rule sets `alwaysApply: true`, so Cursor includes it in every chat and Agent
@@ -20,8 +22,8 @@ turn — no further setup. Restart or reload the Cursor window to pick it up.
 ## Install (global / user rule)
 
 To apply it across all projects, open **Cursor Settings → Rules → User Rules**
-and paste the body of [`rules/reply-trace.mdc`](rules/reply-trace.mdc) (the text
-below the frontmatter).
+and paste the body of [`rules/reply-trace.mdc`](../../rules/reply-trace.mdc) (the
+text below the frontmatter).
 
 ## Why a rule, not a hook
 

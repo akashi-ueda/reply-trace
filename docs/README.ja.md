@@ -70,7 +70,7 @@ always-apply rule としてインストール:
 
 ```bash
 mkdir -p .cursor/rules
-cp hosts/cursor/rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
+cp rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
 ```
 
 rule は `alwaysApply: true` なので Cursor が毎ターン含めます。Cursor の per-turn

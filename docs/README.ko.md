@@ -69,7 +69,7 @@ Cursor엔 플러그인 패키지가 없지만 **Rules**가 매 턴 다시 주입
 
 ```bash
 mkdir -p .cursor/rules
-cp hosts/cursor/rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
+cp rules/reply-trace.mdc .cursor/rules/reply-trace.mdc
 ```
 
 rule이 `alwaysApply: true`라 Cursor가 매 턴 포함합니다. Cursor의 per-turn
