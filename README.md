@@ -9,9 +9,7 @@ scenes, disclosed in a single line at the end of every answer.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Hosts](https://img.shields.io/badge/hosts-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor%20%C2%B7%20Antigravity-blue)](#install)
-[![Agent agnostic](https://img.shields.io/badge/design-agent--agnostic-purple)](#agent-agnostic-core)
 [![No deps](https://img.shields.io/badge/deps-zero%20(stdlib)-brightgreen)](#agent-agnostic-core)
-[![Language](https://img.shields.io/badge/footer-matches%20your%20reply-orange)](#language)
 
 [**Install**](#install) · [Configuration](#configuration) · [How it works](#agent-agnostic-core)
 
