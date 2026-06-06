@@ -54,9 +54,9 @@ marketplace, and trust the hook via `/hooks`.
   auto-discovers this default file; no `hooks` entry in the manifest is required.
 - Env: the hook command uses `${CLAUDE_PLUGIN_ROOT}`, which Codex sets for
   plugin-hook compatibility (alongside its own `PLUGIN_ROOT`).
-- Config env vars (`REPLY_TRACE_LABEL`, `REPLY_TRACE_LOCALE`,
-  `REPLY_TRACE_DISABLE`) work the same on both hosts. Legacy
-  `AGENT_ATTRIBUTION_*` names are accepted as fallbacks.
+- Config env vars (`REPLY_TRACE_LABEL`, `REPLY_TRACE_DISABLE`) work the same on
+  both hosts. Legacy `AGENT_ATTRIBUTION_*` names are accepted as fallbacks. The
+  footer language always matches the reply — there is no locale setting.
 
 ## References
 

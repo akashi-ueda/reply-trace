@@ -29,7 +29,7 @@ y siempre al final de la respuesta.
 | Footer de una línea | Añade una línea de atribución compacta solo cuando hace falta. |
 | Núcleo agnóstico de agente | La misma regla funciona en Claude Code, Codex, Cursor, Antigravity y más. |
 | Plugin o regla | Paquete de plugin en Claude Code/Codex; regla siempre activa en Cursor/Antigravity. |
-| Soporte de idiomas | Inglés por defecto, con etiquetas/categorías del footer en es, ko, ja, zh. |
+| Idioma automático | El footer se escribe en el mismo idioma de cada respuesta — sin ajuste de locale. |
 | Sin dependencias | El hook es un pequeño script de Python que usa solo la librería estándar. |
 
 ## Instalación
@@ -98,23 +98,16 @@ Todas las opciones usan variables de entorno.
 
 | Variable | Por defecto | Efecto |
 |----------|-------------|--------|
-| `REPLY_TRACE_LABEL` | según locale | Reemplaza la etiqueta del footer. |
-| `REPLY_TRACE_LOCALE` | `auto` | `auto` ajusta el footer al idioma de tu respuesta; pon `en`/`ko`/`ja`/`es`/`zh`/otro para fijarlo. |
+| `REPLY_TRACE_LABEL` | `Auto-used` | Reemplaza la etiqueta del footer. |
 | `REPLY_TRACE_DISABLE` | sin definir | Pon `1`, `true`, `on` o `yes` para suprimir el footer. |
 
 Las variables heredadas `AGENT_ATTRIBUTION_*` se aceptan como respaldo.
 
-## Locale
+## Idioma
 
-Por defecto (`REPLY_TRACE_LOCALE=auto`) el idioma del footer sigue al de la
-respuesta — una respuesta en español obtiene un footer en español, sin
-configuración. Define un locale explícito para fijar un idioma con palabras de
-categoría canónicas.
-
-```bash
-# Fijar a español (con auto es automático cuando respondes en español)
-export REPLY_TRACE_LOCALE=es
-```
+El idioma del footer siempre sigue al de tu respuesta — una respuesta en español
+obtiene un footer en español, sin configuración. No hay ajuste de locale; el
+idioma sigue la conversación. Por ejemplo, una respuesta en español termina con:
 
 ```text
 Usado automáticamente — plugins: Browser; habilidades: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; subagentes: reviewer (revisa el diff); hooks: pre_tool_use (revisa la política de comandos)

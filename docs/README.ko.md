@@ -28,7 +28,7 @@ disclosure를 작고 일관되게, 항상 응답 끝에 둡니다.
 | 한 줄 footer | 필요할 때만 간결한 attribution 줄 추가. |
 | Agent-agnostic core | 같은 규칙이 Claude Code, Codex, Cursor, Antigravity 등에서 동작. |
 | 플러그인 또는 rule | Claude Code/Codex는 플러그인 패키지, Cursor/Antigravity는 always-on rule. |
-| Locale 지원 | 영어 기본, 한국어·일본어·스페인어·중국어 footer 라벨/category 제공. |
+| 자동 언어 | footer가 각 응답과 같은 언어로 작성됨 — locale 설정 없음. |
 | 무의존성 | 훅은 표준 라이브러리만 쓰는 작은 Python 스크립트. |
 
 ## 설치
@@ -97,22 +97,16 @@ cp hosts/antigravity/rules/reply-trace.md .agents/rules/reply-trace.md
 
 | 변수 | 기본값 | 효과 |
 |------|--------|------|
-| `REPLY_TRACE_LABEL` | locale 기본값 | footer 라벨 교체. |
-| `REPLY_TRACE_LOCALE` | `auto` | `auto`는 footer를 응답 언어에 맞춤; `en`/`ko`/`ja`/기타 설정 시 그 언어로 고정. |
+| `REPLY_TRACE_LABEL` | `Auto-used` | footer 라벨 교체. |
 | `REPLY_TRACE_DISABLE` | unset | `1`, `true`, `on`, `yes` 설정 시 footer 억제. |
 
 레거시 `AGENT_ATTRIBUTION_*` 변수도 fallback으로 허용됩니다.
 
-## Locale
+## 언어
 
-기본값(`REPLY_TRACE_LOCALE=auto`)에서는 footer 언어가 응답 언어를 따라갑니다 —
-한국어로 답하면 한국어 footer, 일본어로 답하면 일본어 footer, 설정 불필요.
-한 언어로 고정하고 canonical category 단어를 쓰려면 명시적 locale을 설정합니다.
-
-```bash
-# 한국어로 고정 (auto면 응답이 한국어일 때 자동)
-export REPLY_TRACE_LOCALE=ko
-```
+footer 언어는 항상 응답 언어를 따라갑니다 — 한국어로 답하면 한국어 footer,
+일본어로 답하면 일본어 footer, 설정 불필요. locale 설정은 없고 언어는 대화를
+따릅니다. 예: 한국어 응답은 다음으로 끝납니다.
 
 ```text
 사용한 자동 트리거 — 플러그인: Browser; 스킬: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; 서브에이전트: reviewer (diff 검토); 훅: pre_tool_use (명령 정책 확인)

@@ -57,37 +57,28 @@ Auto-used — skills: superpowers:brainstorming; subagents: reviewer (checks dif
 
 ## Language
 
-By default the footer language is **not pinned**: write the footer — label and
-category names — in the **same language as your reply**, keeping the structure
-and category order shown above. So a Korean reply gets a Korean footer, a
-Japanese reply a Japanese one, with no configuration. This is the `auto` mode the
-hook reminder requests when no locale is set.
+Always write the footer — label and category names — in the **same language as
+your reply**, keeping the structure and category order shown above. A Korean
+reply gets a Korean footer, a Japanese reply a Japanese one, with no
+configuration. There is no locale setting; the language follows the conversation.
 
-Set `REPLY_TRACE_LOCALE` to force one fixed language with canonical category
-words regardless of the reply language (see Configuration).
+For example, a Korean reply ends with:
+
+```
+사용한 자동 트리거 — 플러그인: Browser; 스킬: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; 서브에이전트: reviewer (diff 검토); 훅: pre_tool_use (명령 정책 확인)
+```
 
 ## Configuration
 
 The hook reads these environment variables (all optional) and tells you which to
 apply via its per-turn reminder:
 
-- `REPLY_TRACE_LABEL` — replace the `Auto-used` label (e.g. `사용한 자동 트리거`).
-- `REPLY_TRACE_LOCALE` — `auto` (default), `en`, `ko`, `ja`, `es`, `zh`, or
-  another locale. `auto` (or unset) matches the footer to your reply's language.
-  An explicit locale pins the footer: write the label, category names, subagent
-  roles, and hook roles in that language with the same structure. Built-in
-  locales `en`/`ko`/`ja`/`es`/`zh` carry canonical category words (e.g. `ko` →
-  label `사용한 자동 트리거`, categories `플러그인`/`스킬`/`MCP`/`서브에이전트`/`훅`).
+- `REPLY_TRACE_LABEL` — replace the `Auto-used` label (translate it to match your
+  reply, or set a fixed string here).
 - `REPLY_TRACE_DISABLE` — when set (`1`/`true`), suppress the footer
   entirely for that environment.
 
 Legacy `AGENT_ATTRIBUTION_*` names are accepted as fallbacks.
-
-### Locale `ko` example
-
-```
-사용한 자동 트리거 — 플러그인: Browser; 스킬: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; 서브에이전트: reviewer (diff 검토); 훅: pre_tool_use (명령 정책 확인)
-```
 
 ## Rules of thumb
 

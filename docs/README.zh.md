@@ -26,7 +26,7 @@
 | 单行页脚 | 仅在需要时添加一行紧凑的归属信息。 |
 | 智能体无关核心 | 同一规则适用于 Claude Code、Codex、Cursor、Antigravity 等。 |
 | 插件或规则 | 在 Claude Code/Codex 上是插件包；在 Cursor/Antigravity 上是常驻规则。 |
-| 多语言支持 | 默认英文，并提供 es、ko、ja、zh 的页脚标签/类别。 |
+| 自动语言 | 页脚以每次回复相同的语言书写——无 locale 设置。 |
 | 零依赖 | 钩子是仅使用标准库的小型 Python 脚本。 |
 
 ## 安装
@@ -93,21 +93,15 @@ cp hosts/antigravity/rules/reply-trace.md .agents/rules/reply-trace.md
 
 | 变量 | 默认 | 作用 |
 |------|------|------|
-| `REPLY_TRACE_LABEL` | locale 默认值 | 替换页脚标签。 |
-| `REPLY_TRACE_LOCALE` | `auto` | `auto` 让页脚匹配你回复的语言；设为 `en`/`ko`/`ja`/`es`/`zh`/其他以固定。 |
+| `REPLY_TRACE_LABEL` | `Auto-used` | 替换页脚标签。 |
 | `REPLY_TRACE_DISABLE` | 未设置 | 设为 `1`、`true`、`on` 或 `yes` 以抑制页脚。 |
 
 仍接受旧版 `AGENT_ATTRIBUTION_*` 变量作为回退。
 
-## Locale
+## 语言
 
-默认情况下（`REPLY_TRACE_LOCALE=auto`），页脚语言跟随回复语言——中文回复得到
-中文页脚，无需配置。设置明确的 locale 可固定为某一语言并使用规范的类别词。
-
-```bash
-# 固定为中文（auto 时，中文回复会自动使用）
-export REPLY_TRACE_LOCALE=zh
-```
+页脚语言始终跟随你的回复语言——中文回复得到中文页脚，无需配置。没有 locale
+设置；语言跟随对话。例如，中文回复以如下结尾：
 
 ```text
 自动使用 — 插件: Browser; 技能: browser:control-in-app-browser; MCP: anthropicDocs/search_docs; 子代理: reviewer (检查 diff); 钩子: pre_tool_use (检查命令策略)

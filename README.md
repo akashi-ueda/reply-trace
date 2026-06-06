@@ -11,7 +11,7 @@ scenes, disclosed in a single line at the end of every answer.
 [![Hosts](https://img.shields.io/badge/hosts-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor%20%C2%B7%20Antigravity-blue)](#install)
 [![Agent agnostic](https://img.shields.io/badge/design-agent--agnostic-purple)](#agent-agnostic-core)
 [![No deps](https://img.shields.io/badge/deps-zero%20(stdlib)-brightgreen)](#agent-agnostic-core)
-[![Language](https://img.shields.io/badge/footer-en%20%7C%20ko%20%7C%20ja%20%7C%20es%20%7C%20zh%20%7C%20auto-orange)](#language)
+[![Language](https://img.shields.io/badge/footer-matches%20your%20reply-orange)](#language)
 
 [**Install**](#install) · [Configuration](#configuration) · [How it works](#agent-agnostic-core)
 
@@ -57,7 +57,7 @@ reply.
 | One-line footer | Adds a compact attribution line only when needed. |
 | Agent-agnostic core | Same rule works across Claude Code, Codex, Cursor, Antigravity, and other hosts. |
 | Plugin or rule | Plugin package on Claude Code / Codex; always-on rule on Cursor / Antigravity. |
-| Locale support | English default, with ko / ja / es / zh footer labels/categories, or auto-match. |
+| Auto language | The footer is written in the same language as each reply — no locale setting. |
 | No dependencies | Hook is a small Python script using only the standard library. |
 
 ## Install
@@ -126,22 +126,18 @@ All options use environment variables.
 
 | Variable | Default | Effect |
 |----------|---------|--------|
-| `REPLY_TRACE_LABEL` | locale default | Replaces the footer label. |
-| `REPLY_TRACE_LOCALE` | `auto` | `auto` matches the footer to your reply's language; set `en`/`ko`/`ja`/`es`/`zh`/other to pin one. |
+| `REPLY_TRACE_LABEL` | `Auto-used` | Replaces the footer label. |
 | `REPLY_TRACE_DISABLE` | unset | Set `1`, `true`, `on`, or `yes` to suppress the footer. |
 
 Legacy `AGENT_ATTRIBUTION_*` variables are still accepted as fallbacks.
 
 ## Language
 
-By default (`REPLY_TRACE_LOCALE=auto`) the footer language follows the reply — a
-Korean reply gets a Korean footer, a Japanese reply a Japanese one, with no
-configuration. Set an explicit `REPLY_TRACE_LOCALE` to pin one language with
-canonical category words; built-in locales are `en`, `ko`, `ja`, `es`, and `zh`
-(any other value works too — the agent writes the categories in that language).
-Localized footer examples live in the
-[Korean](docs/README.ko.md), [Japanese](docs/README.ja.md),
-[Spanish](docs/README.es.md), and [Chinese](docs/README.zh.md) docs.
+The footer language always follows your reply — a Korean reply gets a Korean
+footer, a Japanese reply a Japanese one, and so on, with no configuration. There
+is no locale setting; the language matches the conversation. The README itself is
+translated into [Korean](docs/README.ko.md), [Japanese](docs/README.ja.md),
+[Spanish](docs/README.es.md), and [Chinese](docs/README.zh.md).
 
 ## Agent-Agnostic Core
 
