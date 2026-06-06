@@ -72,12 +72,12 @@ The hook reads these environment variables (all optional) and tells you which to
 apply via its per-turn reminder:
 
 - `REPLY_TRACE_LABEL` — replace the `Auto-used` label (e.g. `사용한 자동 트리거`).
-- `REPLY_TRACE_LOCALE` — `auto` (default), `en`, `ko`, `ja`, or another locale.
-  `auto` (or unset) matches the footer to your reply's language. An explicit
-  locale pins the footer: write the label, category names, subagent roles, and
-  hook roles in that language with the same structure. Built-in locale `ko` maps
-  to label `사용한 자동 트리거` and category words
-  `플러그인`/`스킬`/`MCP`/`서브에이전트`/`훅`.
+- `REPLY_TRACE_LOCALE` — `auto` (default), `en`, `ko`, `ja`, `es`, `zh`, or
+  another locale. `auto` (or unset) matches the footer to your reply's language.
+  An explicit locale pins the footer: write the label, category names, subagent
+  roles, and hook roles in that language with the same structure. Built-in
+  locales `en`/`ko`/`ja`/`es`/`zh` carry canonical category words (e.g. `ko` →
+  label `사용한 자동 트리거`, categories `플러그인`/`스킬`/`MCP`/`서브에이전트`/`훅`).
 - `REPLY_TRACE_DISABLE` — when set (`1`/`true`), suppress the footer
   entirely for that environment.
 

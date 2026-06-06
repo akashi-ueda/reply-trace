@@ -11,9 +11,11 @@ scenes, disclosed in a single line at the end of every answer.
 [![Hosts](https://img.shields.io/badge/hosts-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor%20%C2%B7%20Antigravity-blue)](#install)
 [![Agent agnostic](https://img.shields.io/badge/design-agent--agnostic-purple)](#agent-agnostic-core)
 [![No deps](https://img.shields.io/badge/deps-zero%20(stdlib)-brightgreen)](#agent-agnostic-core)
-[![Language](https://img.shields.io/badge/footer-en%20%7C%20ko%20%7C%20ja%20%7C%20auto-orange)](#language)
+[![Language](https://img.shields.io/badge/footer-en%20%7C%20ko%20%7C%20ja%20%7C%20es%20%7C%20zh%20%7C%20auto-orange)](#language)
 
-[**Install**](#install) · [Configuration](#configuration) · [How it works](#agent-agnostic-core) · [한국어](docs/README.ko.md) · [日本語](docs/README.ja.md)
+[**Install**](#install) · [Configuration](#configuration) · [How it works](#agent-agnostic-core)
+
+[한국어](docs/README.ko.md) · [日本語](docs/README.ja.md) · [Español](docs/README.es.md) · [中文](docs/README.zh.md)
 
 <!-- DEMO GIF: record a ~5s clip of an agent reply gaining the footer, save to docs/assets/demo.gif, then this renders it. See docs/assets/README.md. -->
 <img src="docs/assets/demo.gif" alt="reply-trace footer appended to an agent reply" width="720">
@@ -55,7 +57,7 @@ reply.
 | One-line footer | Adds a compact attribution line only when needed. |
 | Agent-agnostic core | Same rule works across Claude Code, Codex, Cursor, Antigravity, and other hosts. |
 | Plugin or rule | Plugin package on Claude Code / Codex; always-on rule on Cursor / Antigravity. |
-| Locale support | English default, with Korean and Japanese footer labels/categories. |
+| Locale support | English default, with ko / ja / es / zh footer labels/categories, or auto-match. |
 | No dependencies | Hook is a small Python script using only the standard library. |
 
 ## Install
@@ -125,7 +127,7 @@ All options use environment variables.
 | Variable | Default | Effect |
 |----------|---------|--------|
 | `REPLY_TRACE_LABEL` | locale default | Replaces the footer label. |
-| `REPLY_TRACE_LOCALE` | `auto` | `auto` matches the footer to your reply's language; set `en`/`ko`/`ja`/other to pin one. |
+| `REPLY_TRACE_LOCALE` | `auto` | `auto` matches the footer to your reply's language; set `en`/`ko`/`ja`/`es`/`zh`/other to pin one. |
 | `REPLY_TRACE_DISABLE` | unset | Set `1`, `true`, `on`, or `yes` to suppress the footer. |
 
 Legacy `AGENT_ATTRIBUTION_*` variables are still accepted as fallbacks.
@@ -135,8 +137,11 @@ Legacy `AGENT_ATTRIBUTION_*` variables are still accepted as fallbacks.
 By default (`REPLY_TRACE_LOCALE=auto`) the footer language follows the reply — a
 Korean reply gets a Korean footer, a Japanese reply a Japanese one, with no
 configuration. Set an explicit `REPLY_TRACE_LOCALE` to pin one language with
-canonical category words. Localized footer examples live in the
-[Korean](docs/README.ko.md) and [Japanese](docs/README.ja.md) docs.
+canonical category words; built-in locales are `en`, `ko`, `ja`, `es`, and `zh`
+(any other value works too — the agent writes the categories in that language).
+Localized footer examples live in the
+[Korean](docs/README.ko.md), [Japanese](docs/README.ja.md),
+[Spanish](docs/README.es.md), and [Chinese](docs/README.zh.md) docs.
 
 ## Agent-Agnostic Core
 
@@ -206,3 +211,5 @@ MIT — see [LICENSE](LICENSE).
 
 - [한국어 (Korean)](docs/README.ko.md)
 - [日本語 (Japanese)](docs/README.ja.md)
+- [Español (Spanish)](docs/README.es.md)
+- [中文 (Chinese)](docs/README.zh.md)

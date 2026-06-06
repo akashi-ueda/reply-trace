@@ -29,6 +29,8 @@ LOCALES = {
     "en": ("Auto-used", "plugins", "skills", "MCP", "subagents", "hooks"),
     "ko": ("사용한 자동 트리거", "플러그인", "스킬", "MCP", "서브에이전트", "훅"),
     "ja": ("使用した自動トリガー", "プラグイン", "スキル", "MCP", "サブエージェント", "フック"),
+    "es": ("Usado automáticamente", "plugins", "habilidades", "MCP", "subagentes", "hooks"),
+    "zh": ("自动使用", "插件", "技能", "MCP", "子代理", "钩子"),
 }
 
 

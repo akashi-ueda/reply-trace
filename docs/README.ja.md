@@ -3,7 +3,7 @@
 > AI エージェントの動作を可視化: 返信ごとに使ったプラグイン、スキル、
 > MCP ツール、サブエージェント、フックを disclosure として公開。
 
-言語: [English](../README.md) · [한국어](README.ko.md) · **日本語**
+言語: [English](../README.md) · [한국어](README.ko.md) · **日本語** · [Español](README.es.md) · [中文](README.zh.md)
 
 `reply-trace` は、エージェントが裏で自動化を使ったときに、返信の最後へ
 1 行の transparency footer を追加します:
@@ -29,7 +29,7 @@
 | 1 行 footer | 必要なときだけ簡潔な attribution 行を追加。 |
 | Agent-agnostic core | 同じルールが Claude Code、Codex、Cursor、Antigravity などで動作。 |
 | プラグインまたは rule | Claude Code/Codex はプラグインパッケージ、Cursor/Antigravity は always-on rule。 |
-| Locale 対応 | 英語デフォルト、韓国語・日本語の footer ラベル/category。 |
+| Locale 対応 | 英語デフォルト、韓国語・日本語・スペイン語・中国語の footer ラベル/category。 |
 | 依存なし | フックは標準ライブラリのみの小さな Python スクリプト。 |
 
 ## インストール

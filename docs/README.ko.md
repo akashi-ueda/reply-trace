@@ -3,7 +3,7 @@
 > AI 에이전트 동작을 보이게: 매 응답에 사용한 플러그인, 스킬, MCP 도구,
 > 서브에이전트, 훅을 disclosure로 공개.
 
-언어: [English](../README.md) · **한국어** · [日本語](README.ja.md)
+언어: [English](../README.md) · **한국어** · [日本語](README.ja.md) · [Español](README.es.md) · [中文](README.zh.md)
 
 `reply-trace`는 에이전트가 뒤에서 자동화를 사용했을 때 응답 마지막에
 한 줄 transparency footer를 추가합니다:
@@ -28,7 +28,7 @@ disclosure를 작고 일관되게, 항상 응답 끝에 둡니다.
 | 한 줄 footer | 필요할 때만 간결한 attribution 줄 추가. |
 | Agent-agnostic core | 같은 규칙이 Claude Code, Codex, Cursor, Antigravity 등에서 동작. |
 | 플러그인 또는 rule | Claude Code/Codex는 플러그인 패키지, Cursor/Antigravity는 always-on rule. |
-| Locale 지원 | 영어 기본, 한국어·일본어 footer 라벨/category 제공. |
+| Locale 지원 | 영어 기본, 한국어·일본어·스페인어·중국어 footer 라벨/category 제공. |
 | 무의존성 | 훅은 표준 라이브러리만 쓰는 작은 Python 스크립트. |
 
 ## 설치
